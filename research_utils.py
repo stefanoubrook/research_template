@@ -33,47 +33,36 @@ def get_data_loaders(batch_size=64):
     
     return train_loader, test_loader
 
-def train_step(model, loader, optimizer, criterion, device, use_wandb=False):
+def train_step(model, loader, optimizer, criterion, device, l1_lambda=0.0):
     """
-    A stateless, robust training loop.
-    - optimizer.zero_grad(): Prevents gradient accumulation between batches.
-    - loss.backward(): Computes gradients via reverse-mode autodiff.
-    - loss.item(): Crucial for memory—extracts the float and discards the computational graph.
+    Performs a single training epoch.
+    Includes optional L1 regularization to encourage weight sparsity.
     """
-    model.train() # Enable layers like Dropout and BatchNorm
-    total_loss = 0.0
+    model.train()
+    epoch_loss = 0
     
     for batch_idx, (data, target) in enumerate(loader):
-        # Move data to the accelerator (GPU/MPS/CPU)
         data, target = data.to(device), target.to(device)
         
-        # 1. Reset gradients: PyTorch accumulates grads by default
         optimizer.zero_grad()
-        
-        # 2. Forward pass: compute predicted y
         output = model(data)
         
-        # 3. Compute loss
+        # 1. Calculate the base loss (e.g., CrossEntropy)
         loss = criterion(output, target)
         
-        # 4. Backward pass: compute gradient of loss w.r.t parameters
+        # 2. Add L1 penalty if l1_lambda > 0
+        # This sums the absolute values of all parameters (weights and biases)
+        if l1_lambda > 0:
+            l1_penalty = sum(p.abs().sum() for p in model.parameters())
+            loss += l1_lambda * l1_penalty
+            
+        # 3. Standard backpropagation
         loss.backward()
-        
-        # 5. Update parameters
         optimizer.step()
         
-        # 6. Logging: Use .item() to avoid memory leaks
-        total_loss += loss.item()
+        epoch_loss += loss.item()
         
-        if use_wandb and batch_idx % 10 == 0:
-            wandb.log({"batch_loss": loss.item()})
-            
-    avg_loss = total_loss / len(loader)
-    
-    if use_wandb:
-        wandb.log({"epoch_loss": avg_loss})
-        
-    return avg_loss
+    return epoch_loss / len(loader)
 
 def get_flat_gradients(model, criterion, data, target):
     """

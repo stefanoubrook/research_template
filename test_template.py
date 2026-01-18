@@ -39,9 +39,9 @@ class SimpleMLP(nn.Module):
         self.net = nn.Sequential(
             # Einops: "Take Batch, Channel, Height, Width and flatten CHW into one dimension"
             Rearrange('b c h w -> b (c h w)'), 
-            nn.Linear(784, 128),
+            nn.Linear(784, 32),
             nn.LeakyReLU(),
-            nn.Linear(128, 10)
+            nn.Linear(32, 10)
         )
         
     def forward(self, x):

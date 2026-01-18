@@ -1,0 +1,23 @@
+--- Verification Started ---
+Using device: mps
+Epoch 1 | Loss: 0.3527 | Acc: 94.21% | LLC: 149.05
+Epoch 2 | Loss: 0.1880 | Acc: 95.55% | LLC: 140.37
+Epoch 3 | Loss: 0.1503 | Acc: 95.94% | LLC: 95.84
+Epoch 4 | Loss: 0.1299 | Acc: 96.35% | LLC: 83.77
+Epoch 5 | Loss: 0.1166 | Acc: 96.66% | LLC: 87.55
+Epoch 6 | Loss: 0.1069 | Acc: 96.80% | LLC: 58.11
+Epoch 7 | Loss: 0.0994 | Acc: 96.80% | LLC: 59.22
+Epoch 8 | Loss: 0.0924 | Acc: 96.93% | LLC: 92.23
+Epoch 9 | Loss: 0.0882 | Acc: 96.90% | LLC: 62.06
+Epoch 10 | Loss: 0.0832 | Acc: 96.93% | LLC: 60.44
+Epoch 11 | Loss: 0.0790 | Acc: 97.01% | LLC: 53.48
+Epoch 12 | Loss: 0.0761 | Acc: 96.68% | LLC: 67.87
+Epoch 13 | Loss: 0.0730 | Acc: 96.78% | LLC: 33.52
+Epoch 14 | Loss: 0.0709 | Acc: 96.89% | LLC: 54.88
+Epoch 15 | Loss: 0.0678 | Acc: 96.88% | LLC: 46.99
+Epoch 16 | Loss: 0.0671 | Acc: 96.91% | LLC: 38.93
+Epoch 17 | Loss: 0.0632 | Acc: 97.13% | LLC: 51.56
+Epoch 18 | Loss: 0.0628 | Acc: 96.86% | LLC: 59.79
+Epoch 19 | Loss: 0.0610 | Acc: 96.87% | LLC: 36.76
+Epoch 20 | Loss: 0.0602 | Acc: 97.10% | LLC: 40.48
+Model saved as mnist_model.pt
