@@ -1,0 +1,11 @@
+--- Verification Started ---
+Using device: mps
+Epoch 1 | Loss: 0.3444 | Acc: 94.25% | LLC: 32.00
+Epoch 2 | Loss: 0.1783 | Acc: 95.59% | LLC: 32.00
+Epoch 3 | Loss: 0.1394 | Acc: 95.86% | LLC: 32.00
+Epoch 4 | Loss: 0.1178 | Acc: 96.29% | LLC: 32.00
+Epoch 5 | Loss: 0.1033 | Acc: 96.65% | LLC: 32.00
+Epoch 6 | Loss: 0.0932 | Acc: 96.72% | LLC: 32.00
+Epoch 7 | Loss: 0.0854 | Acc: 96.71% | LLC: 32.00
+Epoch 8 | Loss: 0.0772 | Acc: 96.83% | LLC: 32.00
+Epoch 9 | Loss: 0.0723 | Acc: 96.91% | LLC: 32.00

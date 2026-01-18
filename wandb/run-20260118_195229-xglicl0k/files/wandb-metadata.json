@@ -1,0 +1,37 @@
+{
+  "os": "macOS-26.2-arm64-arm-64bit",
+  "python": "CPython 3.11.14",
+  "startedAt": "2026-01-18T08:52:29.052532Z",
+  "program": "/Users/brooki/Documents/Code/Research Template/test_template.py",
+  "codePath": "test_template.py",
+  "codePathLocal": "test_template.py",
+  "git": {
+    "remote": "https://github.com/stefanoubrook/research_template",
+    "commit": "6fe366ab532ece6cb676041b9e03f6d5cf0d3bcf"
+  },
+  "email": "stefanoubrook@gmail.com",
+  "root": "/Users/brooki/Documents/Code/Research Template",
+  "host": "Brooks-MacBook-Air.local",
+  "executable": "/Users/brooki/Documents/Code/Research Template/.venv/bin/python",
+  "cpu_count": 10,
+  "cpu_count_logical": 10,
+  "disk": {
+    "/": {
+      "total": "245107195904",
+      "used": "143674507264"
+    }
+  },
+  "memory": {
+    "total": "17179869184"
+  },
+  "apple": {
+    "name": "Apple M4",
+    "ecpuCores": 6,
+    "pcpuCores": 4,
+    "gpuCores": 10,
+    "memoryGb": 16,
+    "swapTotalBytes": "2147483648",
+    "ramTotalBytes": "17179869184"
+  },
+  "writerId": "cv1hygkm6fomv3u6a54iuh1fefbrh1wr"
+}

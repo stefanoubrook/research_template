@@ -1,0 +1,75 @@
+_wandb:
+    value:
+        cli_version: 0.24.0
+        e:
+            m5w5hr6f7ew5k03gck5wdy76l5y9ne0m:
+                apple:
+                    ecpuCores: 6
+                    gpuCores: 10
+                    memoryGb: 16
+                    name: Apple M4
+                    pcpuCores: 4
+                    ramTotalBytes: "17179869184"
+                    swapTotalBytes: "2147483648"
+                codePath: test_template.py
+                codePathLocal: test_template.py
+                cpu_count: 10
+                cpu_count_logical: 10
+                disk:
+                    /:
+                        total: "245107195904"
+                        used: "143666077696"
+                email: stefanoubrook@gmail.com
+                executable: /Users/brooki/Documents/Code/Research Template/.venv/bin/python
+                git:
+                    commit: 6fe366ab532ece6cb676041b9e03f6d5cf0d3bcf
+                    remote: https://github.com/stefanoubrook/research_template
+                host: Brooks-MacBook-Air.local
+                memory:
+                    total: "17179869184"
+                os: macOS-26.2-arm64-arm-64bit
+                program: /Users/brooki/Documents/Code/Research Template/test_template.py
+                python: CPython 3.11.14
+                root: /Users/brooki/Documents/Code/Research Template
+                startedAt: "2026-01-18T08:42:35.342913Z"
+                writerId: m5w5hr6f7ew5k03gck5wdy76l5y9ne0m
+        m:
+            - "1": epoch
+              "6":
+                - 3
+              "7": []
+            - "1": llc
+              "5": 1
+              "6":
+                - 1
+                - 3
+              "7": []
+            - "1": test_accuracy
+              "5": 1
+              "6":
+                - 1
+                - 3
+              "7": []
+        python_version: 3.11.14
+        t:
+            "1":
+                - 1
+                - 41
+            "2":
+                - 1
+                - 41
+            "3":
+                - 7
+                - 16
+            "4": 3.11.14
+            "5": 0.24.0
+            "12": 0.24.0
+            "13": darwin-arm64
+architecture:
+    value: SimpleMLP
+dataset:
+    value: MNIST
+epochs:
+    value: 10
+learning_rate:
+    value: 0.001

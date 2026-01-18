@@ -1,11 +1,13 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-# Ensure research_utils.py is in the same directory
 from research_utils import get_data_loaders, train_step, evaluate
 import random
 import numpy as np
 from einops.layers.torch import Rearrange
+import wandb
+from llc_estimation import estimate_llc
+
 
 def set_seed(seed=42):
     """
@@ -37,9 +39,9 @@ class SimpleMLP(nn.Module):
         self.net = nn.Sequential(
             # Einops: "Take Batch, Channel, Height, Width and flatten CHW into one dimension"
             Rearrange('b c h w -> b (c h w)'), 
-            nn.Linear(784, 16),
+            nn.Linear(784, 128),
             nn.LeakyReLU(),
-            nn.Linear(16, 10)
+            nn.Linear(128, 10)
         )
         
     def forward(self, x):
@@ -51,6 +53,15 @@ def test_repo():
     Main verification function to test the environment and boilerplate.
     """
     set_seed(42)
+    wandb.init(
+    project="mnist-slt-study",
+    config={
+        "learning_rate": 1e-3,
+        "architecture": "SimpleMLP",
+        "dataset": "MNIST",
+        "epochs": 10,
+        }
+    )
     # 1. Hardware Detection
     # On your Mac, this should ideally pick up 'mps' if configured, otherwise 'cpu'.
     # Check for Apple Silicon GPU (MPS)
@@ -66,7 +77,7 @@ def test_repo():
     # 2. Config (Professional Practice: keep params in one place)
     config = {
         "lr": 1e-3,
-        "epochs": 10,
+        "epochs": 20,
         "batch_size": 64,
         "target_accuracy": 98.0
     }
@@ -80,13 +91,29 @@ def test_repo():
     
     
 
-   # 4. Training Loop with "Target Break"
+    wandb.define_metric("epoch")
+    wandb.define_metric("llc", step_metric="epoch")
+    wandb.define_metric("test_accuracy", step_metric="epoch")
+  
+    # 4. Training Loop
     for epoch in range(1, config["epochs"] + 1):
+        # Execution
         loss = train_step(model, train_loader, optimizer, criterion, device)
-        acc = evaluate(model, test_loader, device) # Now defined in utils!
+        acc = evaluate(model, test_loader, device)
+        llc = estimate_llc(model, train_loader, criterion, device)
         
-        print(f"Epoch {epoch} | Loss: {loss:.4f} | Acc: {acc:.2f}%")
+        # Terminal Reporting
+        print(f"Epoch {epoch} | Loss: {loss:.4f} | Acc: {acc:.2f}% | LLC: {llc:.2f}")
         
+        # W&B Logging - Use standard 'metric': value pairs
+        wandb.log({
+            "epoch": epoch,
+            "train_loss": loss,
+            "test_accuracy": acc,
+            "llc": llc
+         })
+
+        # Early exit if target met
         if acc >= config["target_accuracy"]:
             print(f"Success: Target {config['target_accuracy']}% reached!")
             break
